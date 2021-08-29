@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MoviesReview</string>
+    <string name="item1">Now Playing </string>
+    <string name="item2">Popular </string>
+    <string name="item3">Top Rated </string>
+    <string name="item4">Upcoming </string>
+    <string name="item5">Favourite </string>
+
+    <string name="title">MOVIES</string>
+    <string name="nav_title">MOVIES REVIEW</string>
+
+
+    <string name="navigation_draw_open">open</string>
+    <string name="navigation_draw_close">close</string>
+
+
+</resources>

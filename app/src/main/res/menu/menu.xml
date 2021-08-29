@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/NowPlaying"
+            android:title="@string/item1"
+            android:icon="@drawable/ic_baseline_movie_24"
+            ></item>
+
+    <item android:id="@+id/Popular"
+        android:title="@string/item2"
+        android:icon="@drawable/ic_baseline_equalizer_24">
+
+    </item>
+
+    <item android:id="@+id/TopRated"
+        android:title="@string/item3"
+        android:icon="@drawable/ic_baseline_trending_up_24">
+
+    </item>
+
+    <item android:id="@+id/Upcoming"
+        android:title="@string/item4"
+        android:icon="@drawable/ic_baseline_play_circle_filled_24"></item>
+
+    <item android:id="@+id/favourite"
+        android:title="@string/item5"
+        android:icon="@drawable/ic_baseline_star_24"></item>
+    </group>
+</menu>
