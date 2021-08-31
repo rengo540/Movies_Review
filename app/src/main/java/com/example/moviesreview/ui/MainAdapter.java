@@ -23,18 +23,20 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.movieVH>  {
 
 private List<Movie_Api> movies=new ArrayList();
 Context context;
+RecyclerViewClickListener listener ;
 
 public MainAdapter(Context context)
         {this.context=context;
         }
 
-public void setList(List<Movie_Api> movies ) {
+public void setList(List<Movie_Api> movies,RecyclerViewClickListener listener ) {
         this.movies = movies;
+        this.listener=listener;
         notifyDataSetChanged();
         }
 
 
-class movieVH extends RecyclerView.ViewHolder  {
+class movieVH extends RecyclerView.ViewHolder implements View.OnClickListener {
     TextView movieTitle ;
     ImageView movieImg ;
 
@@ -43,6 +45,12 @@ class movieVH extends RecyclerView.ViewHolder  {
         super(itemView);
        movieImg=itemView.findViewById(R.id.movieImg);
         movieTitle=itemView.findViewById(R.id.movieTitle);
+        itemView.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        listener.onClick(v,getAdapterPosition());
     }
 }
 
@@ -80,4 +88,8 @@ class movieVH extends RecyclerView.ViewHolder  {
         return movies.size();
     }
 
+
+    public interface RecyclerViewClickListener{
+        void onClick (View view,int position);
+    }
 }
