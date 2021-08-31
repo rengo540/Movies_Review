@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.moviesreview.R;
 import com.example.moviesreview.data.model.api.ResultMovieData;
@@ -16,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +27,8 @@ public class TopRatedFragment extends Fragment {
     TopRatedViewModel topRatedViewModel;
     TextView textView;
     MainAdapter adapter;
+
+    MainAdapter.RecyclerViewClickListener listener;
 
     @Nullable
     @Override
@@ -38,14 +42,23 @@ public class TopRatedFragment extends Fragment {
 
         recyclerView = rootView.findViewById(R.id.TopRatedRecycler);
         adapter =new MainAdapter(getContext());
-        recyclerView.setLayoutManager( new LinearLayoutManager(getActivity()));
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        recyclerView.setLayoutManager( mLayoutManager);
         recyclerView.setAdapter(adapter);
+
+        listener=new MainAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Toast.makeText(getActivity(),"this done ",Toast.LENGTH_SHORT).show();
+
+            }
+        };
 
         topRatedViewModel.getTopRatedData().observe(getViewLifecycleOwner(), new Observer<ResultMovieData>() {
             @Override
             public void onChanged(ResultMovieData resultMovieData) {
 
-                adapter.setList( resultMovieData.getResults());
+                adapter.setList(resultMovieData.getResults(),listener);
 
             }
         });

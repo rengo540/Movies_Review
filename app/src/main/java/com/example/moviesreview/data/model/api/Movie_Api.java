@@ -14,7 +14,7 @@ public class Movie_Api {
 
 
     @SerializedName("id")
-    private Integer id;
+    private int id;
     @SerializedName("title")
     private String title;
     @SerializedName("original_title")
