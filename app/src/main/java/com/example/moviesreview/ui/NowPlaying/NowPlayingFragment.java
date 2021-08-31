@@ -11,7 +11,9 @@ import android.widget.Toast;
 import com.example.moviesreview.R;
 import com.example.moviesreview.data.model.api.Movie_Api;
 import com.example.moviesreview.data.model.api.ResultMovieData;
+import com.example.moviesreview.data.remote.ApiClient;
 import com.example.moviesreview.ui.MainAdapter;
+import com.example.moviesreview.ui.details.MovieDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +63,9 @@ public class NowPlayingFragment extends Fragment {
             public void onClick(View view, int position) {
                 int idMovie = list.get(position).getId();
 
-                Intent intent =new Intent(getActivity(),)
+                Intent intent =new Intent(getActivity(), MovieDetails.class);
+                intent.putExtra("idMovie",idMovie);
+                startActivity(intent);
 
             }
         };
