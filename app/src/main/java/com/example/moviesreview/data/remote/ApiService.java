@@ -7,6 +7,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 
@@ -26,4 +27,10 @@ public interface ApiService {
     public Call<ResultMovieData> getTopRatedMovies(@Query("api_key") String apiKey,
                                                   @Query("language") String language,
                                                   @Query("page") int page);
+
+    @GET("movie/{movie_id}")
+    public Call<Movie_Api> getMovieDetails( @Path("movie_id") int id
+                                           , @Query("api_key") String apiKey,
+                                            @Query("language") String language);
+
 }

@@ -14,12 +14,14 @@ import retrofit2.Response;
 public class ApiRepo {
 
    public MutableLiveData<ResultMovieData> movies ;
+   public MutableLiveData<Movie_Api> selectedMovie ;
 
    private static ApiRepo Instance ;
 
 
    public ApiRepo (){
        movies = new MutableLiveData<>();
+       selectedMovie=new MutableLiveData<>();
 
    }
 
@@ -84,7 +86,20 @@ return movies;
     }
 
 
+    public MutableLiveData<Movie_Api> getSelectedMovie(int id){
+        ApiClient.getInstance().getMovieDetails(id).enqueue(new Callback<Movie_Api>() {
+            @Override
+            public void onResponse(Call<Movie_Api> call, Response<Movie_Api> response) {
+                selectedMovie.setValue(response.body());
+            }
 
+            @Override
+            public void onFailure(Call<Movie_Api> call, Throwable t) {
+
+            }
+        });
+        return selectedMovie ;
+    }
 
 
 

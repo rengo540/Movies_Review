@@ -21,6 +21,7 @@ private static ApiClient Instance ;
  Retrofit retrofit;
 
 
+
 public ApiClient (){
     retrofit =new Retrofit.Builder().
              baseUrl(BaseUrl).
@@ -30,6 +31,8 @@ public ApiClient (){
     apiService = retrofit.create(ApiService.class);
 
 }
+
+
 
 public static ApiClient getInstance (){
 
@@ -50,5 +53,5 @@ public Call<ResultMovieData> getPopular (){return  apiService.getPopularMovies(A
 
 public Call<ResultMovieData> getTopRated (){return  apiService.getTopRatedMovies(ApiKey,"en-US",1);}
 
-
+public Call<Movie_Api> getMovieDetails (int id){ return  apiService.getMovieDetails(id,ApiKey, "en_US" ); }
 }

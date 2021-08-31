@@ -38,6 +38,10 @@ public class Movie_Api {
         this.backdrop_path=backdrop_path;
     }
 
+    public String getOriginalTitle() {
+         return originalTitle;
+    }
+
     public String getTitle() {
         return title;
     }
