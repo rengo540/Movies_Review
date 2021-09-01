@@ -73,7 +73,7 @@ class movieVH extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttp3Downloader(context));
-        builder.build().load(ApiClient.getInstance().getImgUrl() + movies.get(position).getBackdrop_path())
+        builder.build().load(ApiClient.getInstance().getImgUrl() + movies.get(position).getPosterPath())
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_background)
                 .into(movieVH.movieImg);
