@@ -2,6 +2,8 @@ package com.example.moviesreview.data.model.api;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Movie_Api {
 
     /*private String title ;
@@ -27,16 +29,20 @@ public class Movie_Api {
     private String releaseDate;
     @SerializedName("backdrop_path")
     private String backdrop_path;
+    @SerializedName("status")
+    private  String status ;
+    @SerializedName("genres")
+    private List<Genres> genres;
+    @SerializedName("vote_average")
+    private float vote_average ;
 
 
     public Movie_Api()
     {}
 
-    public Movie_Api(String title , int id,String backdrop_path){
-        this.title=title;
-        this.id=id;
-        this.backdrop_path=backdrop_path;
-    }
+   public List<Genres> getGenres (){
+        return genres;
+   }
 
     public String getOriginalTitle() {
          return originalTitle;
@@ -46,23 +52,31 @@ public class Movie_Api {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getBackdrop_path() {
         return backdrop_path;
     }
 
-    public void setBackdrop_path(String backdrop_path) {
-        this.backdrop_path = backdrop_path;
+    public String getStatus() {
+        return status;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public float getVote_average() {
+        return vote_average;
     }
 }
