@@ -15,6 +15,7 @@ import com.example.moviesreview.ui.MainAdapter;
 import com.example.moviesreview.ui.NowPlaying.NowPlayingViewModel;
 import com.example.moviesreview.ui.details.MovieDetails;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +32,10 @@ public class FavouriteFragment extends Fragment {
     FavouriteViewModel favouriteViewModel ;
     RecyclerView recyclerView;
     FavouriteAdapter adapter;
-    MainAdapter.RecyclerViewClickListener listener;
+    FavouriteAdapter.RecyclerViewClickListener listener;
 
-    List<Movie_db> list;
+    public List<Movie_db> list;
+    ArrayList<String> favIntList=new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,7 +50,7 @@ public class FavouriteFragment extends Fragment {
 
         recyclerView = rootView.findViewById(R.id.favouriteRecycler);
         adapter =new FavouriteAdapter(getContext());
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 3);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(),2 );
 
         recyclerView.setLayoutManager( mLayoutManager);
         recyclerView.setAdapter(adapter);
@@ -59,23 +61,31 @@ public class FavouriteFragment extends Fragment {
                 list=movie_dbs;
 
                 adapter.setList(movie_dbs,listener);
+                adapter.notifyDataSetChanged();
             }
         });
 
 
-        listener=new MainAdapter.RecyclerViewClickListener() {
+
+
+
+        listener=new FavouriteAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
+
+
                 int idMovie = list.get(position).getId();
 
                 Intent intent =new Intent(getActivity(), MovieDetails.class);
                 intent.putExtra("idMovie",idMovie);
-                startActivity(intent);
 
+                startActivity(intent);
             }
         };
 
 
         return rootView;
     }
+
+
 }

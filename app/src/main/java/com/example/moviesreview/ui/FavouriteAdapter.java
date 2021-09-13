@@ -24,13 +24,13 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.movi
 
     private List<Movie_db> movies=new ArrayList();
     Context context;
-    MainAdapter.RecyclerViewClickListener listener ;
+    FavouriteAdapter.RecyclerViewClickListener listener ;
 
     public FavouriteAdapter(Context context)
     {this.context=context;
     }
 
-    public void setList(List<Movie_db> movies, MainAdapter.RecyclerViewClickListener listener ) {
+    public void setList(List<Movie_db> movies, FavouriteAdapter.RecyclerViewClickListener listener ) {
         this.movies = movies;
         this.listener=listener;
         notifyDataSetChanged();

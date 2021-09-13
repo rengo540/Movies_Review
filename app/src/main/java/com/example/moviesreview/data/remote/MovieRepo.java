@@ -20,20 +20,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ApiRepo {
+public class MovieRepo {
 
    public MutableLiveData<ResultMovieData> movies ;
    public MutableLiveData<Movie_Api> selectedMovie ;
     public MutableLiveData<ResultMovieData> Smovies ;
     public MutableLiveData<List<Movie_db>> favMovies ;
 
-   private static ApiRepo Instance ;
+   private static MovieRepo Instance ;
 
 
 
 
 
-   public ApiRepo (){
+   public MovieRepo(){
        movies = new MutableLiveData<>();
        selectedMovie=new MutableLiveData<>();
        Smovies=new MutableLiveData<>();
@@ -42,9 +42,9 @@ public class ApiRepo {
    }
 
 
-   public static ApiRepo getInstance(){
+   public static MovieRepo getInstance(){
        if(Instance==null){
-           Instance =new ApiRepo();
+           Instance =new MovieRepo();
 
        }
        return  Instance;
@@ -135,9 +135,9 @@ return movies;
     }
 
 
-    public void insertFavouriteMovie (Context context,int id , String title )
+    public void insertFavouriteMovie (Context context,int id , String title,String poster )
     {
-        MovieDatabase.getInstance(context).dao().insert(new Movie_db(id,title)).
+        MovieDatabase.getInstance(context).dao().insert(new Movie_db(id,title,poster)).
                 subscribeOn(Schedulers.computation()).
                 subscribe(new CompletableObserver() {
                     @Override
@@ -179,6 +179,27 @@ return movies;
                });
 
         return favMovies;
+
+    }
+
+    public void deleteFromFav (Context context,int id ){
+       MovieDatabase.getInstance(context).dao().delete(id).subscribeOn(Schedulers.computation())
+               .subscribe(new CompletableObserver() {
+                   @Override
+                   public void onSubscribe(@NonNull Disposable d) {
+
+                   }
+
+                   @Override
+                   public void onComplete() {
+
+                   }
+
+                   @Override
+                   public void onError(@NonNull Throwable e) {
+
+                   }
+               });
 
     }
 

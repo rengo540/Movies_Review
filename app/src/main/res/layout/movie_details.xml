@@ -88,30 +88,7 @@
         app:layout_constraintTop_toBottomOf="@+id/movieGeners"
         app:layout_constraintVertical_bias="0.099" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/overView">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="smilar movies "
-            android:textSize="30dp"
-            android:textStyle="bold"
-            ></TextView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/similarMoviesRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"></androidx.recyclerview.widget.RecyclerView>
-
-    </LinearLayout>
 
     <Button
         android:id="@+id/favBtn"
@@ -122,7 +99,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/movieGeners"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar"
-        android:src="@drawable/ic_baseline_star_24" />
+        android:src="@drawable/ic_baseline_star_24"
+        />
 
 
 
