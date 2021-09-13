@@ -58,6 +58,15 @@ public class NowPlayingFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
+        nowPlayingViewModel.getMovies().observe(getViewLifecycleOwner(), new Observer<ResultMovieData>() {
+            @Override
+            public void onChanged(ResultMovieData resultMovieData) {
+                list=resultMovieData.getResults();
+                adapter.setList(resultMovieData.getResults(),listener);
+            }
+        });
+
+
         listener=new MainAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -71,13 +80,7 @@ public class NowPlayingFragment extends Fragment {
         };
 
 
-        nowPlayingViewModel.getMovies().observe(getViewLifecycleOwner(), new Observer<ResultMovieData>() {
-            @Override
-            public void onChanged(ResultMovieData resultMovieData) {
-                list=resultMovieData.getResults();
-                adapter.setList(resultMovieData.getResults(),listener);
-            }
-        });
+
 
 
         return rootView;
