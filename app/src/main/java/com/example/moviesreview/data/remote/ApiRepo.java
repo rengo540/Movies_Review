@@ -1,12 +1,21 @@
 package com.example.moviesreview.data.remote;
 
+import android.content.Context;
+
+import com.example.moviesreview.data.local.MovieDatabase;
 import com.example.moviesreview.data.model.api.Movie_Api;
 import com.example.moviesreview.data.model.api.ResultMovieData;
+import com.example.moviesreview.data.model.db.Movie_db;
 
 import java.util.List;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import io.reactivex.CompletableObserver;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -15,13 +24,20 @@ public class ApiRepo {
 
    public MutableLiveData<ResultMovieData> movies ;
    public MutableLiveData<Movie_Api> selectedMovie ;
+    public MutableLiveData<ResultMovieData> Smovies ;
+    public MutableLiveData<List<Movie_db>> favMovies ;
 
    private static ApiRepo Instance ;
+
+
+
 
 
    public ApiRepo (){
        movies = new MutableLiveData<>();
        selectedMovie=new MutableLiveData<>();
+       Smovies=new MutableLiveData<>();
+       favMovies=new MutableLiveData<>();
 
    }
 
@@ -100,6 +116,72 @@ return movies;
         });
         return selectedMovie ;
     }
+
+
+    public MutableLiveData<ResultMovieData> getSimilarMovies (int id){
+       ApiClient.getInstance().getSimilarMovies(id).enqueue(new Callback<ResultMovieData>() {
+           @Override
+           public void onResponse(Call<ResultMovieData> call, Response<ResultMovieData> response) {
+               Smovies.setValue(response.body());
+           }
+
+           @Override
+           public void onFailure(Call<ResultMovieData> call, Throwable t) {
+
+           }
+       });
+
+       return Smovies;
+    }
+
+
+    public void insertFavouriteMovie (Context context,int id , String title )
+    {
+        MovieDatabase.getInstance(context).dao().insert(new Movie_db(id,title)).
+                subscribeOn(Schedulers.computation()).
+                subscribe(new CompletableObserver() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                    }
+                });
+    }
+
+    public MutableLiveData<List<Movie_db>> getAllFavMovies (Context context){
+
+       MovieDatabase.getInstance(context).dao().getAllMovies().subscribeOn(Schedulers.computation())
+               .observeOn(AndroidSchedulers.mainThread())
+               .subscribe(new SingleObserver<List<Movie_db>>() {
+                   @Override
+                   public void onSubscribe(@NonNull Disposable d) {
+
+                   }
+
+                   @Override
+                   public void onSuccess(@NonNull List<Movie_db> movie_dbs) {
+                       favMovies.setValue(movie_dbs);
+
+                   }
+
+                   @Override
+                   public void onError(@NonNull Throwable e) {
+
+                   }
+               });
+
+        return favMovies;
+
+    }
+
 
 
 

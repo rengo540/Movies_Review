@@ -6,14 +6,6 @@ import java.util.List;
 
 public class Movie_Api {
 
-    /*private String title ;
-    private int id;
-    private String status ;
-    private double vote_average;
-    private long budget ;
-    private String backdrop_path;
-*/
-
 
     @SerializedName("id")
     private int id;

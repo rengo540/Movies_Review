@@ -54,4 +54,8 @@ public Call<ResultMovieData> getPopular (){return  apiService.getPopularMovies(A
 public Call<ResultMovieData> getTopRated (){return  apiService.getTopRatedMovies(ApiKey,"en-US",1);}
 
 public Call<Movie_Api> getMovieDetails (int id){ return  apiService.getMovieDetails(id,ApiKey, "en_US" ); }
+
+public Call<ResultMovieData> getSimilarMovies (int id){ return  apiService.getSimilarMovies(id,ApiKey,"en-Us",1); }
+
+
 }
