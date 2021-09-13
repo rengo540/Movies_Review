@@ -3,7 +3,7 @@ package com.example.moviesreview.ui.favourite;
 import android.content.Context;
 
 import com.example.moviesreview.data.model.db.Movie_db;
-import com.example.moviesreview.data.remote.ApiRepo;
+import com.example.moviesreview.data.remote.MovieRepo;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class FavouriteViewModel extends ViewModel {
 
     public LiveData<List<Movie_db>> getFavMovies (Context context){
 
-        return ApiRepo.getInstance().getAllFavMovies(context);
+        return MovieRepo.getInstance().getAllFavMovies(context);
     }
 
 

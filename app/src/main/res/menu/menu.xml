@@ -20,9 +20,7 @@
 
     </item>
 
-    <item android:id="@+id/Upcoming"
-        android:title="@string/item4"
-        android:icon="@drawable/ic_baseline_play_circle_filled_24"></item>
+
 
     <item android:id="@+id/favourite"
         android:title="@string/item5"

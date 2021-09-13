@@ -3,6 +3,7 @@ package com.example.moviesreview.data.model.db;
 import com.example.moviesreview.data.model.api.Genres;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 import androidx.room.ColumnInfo;
@@ -10,7 +11,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "movie_table")
-public class Movie_db {
+public class Movie_db  {
 
     @PrimaryKey(autoGenerate = false)
     private int id;
@@ -20,9 +21,10 @@ public class Movie_db {
 
 
 
-    public Movie_db(int id, String title) {
+    public Movie_db(int id, String title,String posterPath) {
         this.id = id;
         this.title = title;
+        this.posterPath=posterPath;
 
     }
 

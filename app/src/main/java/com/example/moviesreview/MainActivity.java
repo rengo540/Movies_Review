@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import com.example.moviesreview.ui.NowPlaying.NowPlayingFragment;
 import com.example.moviesreview.ui.Popular.PopularFragment;
 import com.example.moviesreview.ui.TopRated.TopRatedFragment;
-import com.example.moviesreview.ui.Upcoming.UpcomingFragment;
 import com.example.moviesreview.ui.favourite.FavouriteFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -63,9 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.TopRated:
                 getSupportFragmentManager().beginTransaction().replace(R.id.Fragment_container,new TopRatedFragment()).commit();
                 break;
-            case R.id.Upcoming:
-                getSupportFragmentManager().beginTransaction().replace(R.id.Fragment_container,new UpcomingFragment()).commit();
-                break;
+
             case R.id.favourite:
                 getSupportFragmentManager().beginTransaction().replace(R.id.Fragment_container,new FavouriteFragment()).commit();
                 break;

@@ -5,6 +5,7 @@ import com.example.moviesreview.data.model.db.Movie_db;
 
 import java.util.List;
 
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import io.reactivex.Completable;
@@ -19,5 +20,7 @@ public interface Dao {
     @Query("select * from movie_table")
     Single<List<Movie_db>> getAllMovies ();
 
+    @Query("delete from movie_table where id= :id ")
+    Completable delete (int id);
 
 }
